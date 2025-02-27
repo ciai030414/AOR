@@ -62,8 +62,7 @@ After comparing performance metrics (MAE, RMSE), the best-performing model was s
 - **Preprocessed datasets** for training and analysis.
 - **EDA visualizations** for trend analysis and feature importance.
 - **Model comparison reports** showing accuracy and predictions.
-- **Final optimized model** for forecasting COVID-19 infections.
-- **Project documentation** detailing methodology, assumptions, and constraints.
+
 
 ## Contributors
 - **Mengqiu Cao**  
