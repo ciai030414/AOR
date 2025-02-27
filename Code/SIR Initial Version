@@ -1,0 +1,45 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+# Step 1: Define the SIR Model Equations
+def sir_model(y, t, beta, gamma):
+    S, I, R = y
+    dSdt = -beta * S * I / N  # Susceptible to Infected transition
+    dIdt = beta * S * I / N - gamma * I  # Infected to Recovered transition
+    dRdt = gamma * I  # Recovery
+    return [dSdt, dIdt, dRdt]
+
+# Step 2: Initialize Parameters
+N = 10000000  # Total population (LA County)
+I0 = 100  # Initial number of infected individuals (adjust based on data)
+R0 = 0  # Initial number of recovered individuals
+S0 = N - I0 - R0  # Initial susceptible individuals
+
+# Estimated parameters (these will be optimized later)
+beta = 0.3  # Infection rate (adjust based on real data)
+gamma = 1/14  # Recovery rate (assuming 14-day infectious period)
+
+# Initial conditions
+initial_conditions = [S0, I0, R0]
+
+# Time frame (in days)
+t = np.linspace(0, 160, 160)  # Simulate for 160 days
+
+# Step 3: Solve the SIR Model Equations
+solution = odeint(sir_model, initial_conditions, t, args=(beta, gamma))
+
+# Extract S, I, and R values from solution
+S, I, R = solution.T
+
+# Step 4: Plot the Results
+plt.figure(figsize=(10, 6))
+plt.plot(t, S, label="Susceptible", color="blue")
+plt.plot(t, I, label="Infected", color="red")
+plt.plot(t, R, label="Recovered", color="green")
+plt.xlabel("Days")
+plt.ylabel("Population Count")
+plt.title("SIR Model for COVID-19 Spread")
+plt.legend()
+plt.grid()
+plt.show()
