@@ -6,13 +6,11 @@ This repository contains the deliverables for our project on predicting COVID-19
 ## Repository Structure
 ```
 📂 covid19-prediction
-│── 📂 code
-│   │── data_preprocessing.ipynb  # Data cleaning and feature engineering
-│   │── exploratory_analysis.ipynb  # Exploratory Data Analysis (EDA)
-│   │── model_training.ipynb  # Model training and evaluation
+│── 📂 Analysis
+│   │── EDA.ipynb  # Exploratory Data Analysis (EDA)
 │ 
 │
-│── 📂 images
+│── 📂 Code
 │   │── eda_plots/  # Data visualizations (trends, distributions, etc.)
 │   │── model_performance/  # Model comparison charts
 │
