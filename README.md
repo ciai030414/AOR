@@ -11,15 +11,16 @@ This repository contains the deliverables for our project on predicting COVID-19
 │ 
 │
 │── 📂 Code
-│   │── eda_plots/  # Data visualizations (trends, distributions, etc.)
-│   │── model_performance/  # Model comparison charts
+│   │── SIR Initial Version  # Code for SIR Model
+│   │── time-series forecasting/  # Prediction Model Comparison
 │
 │── 📂 reports
 │   │── project_progress.pdf  # Progress report
 │
 │── 📂 data
-│   │── raw/  # Original datasets (CSV files from public sources)
-│   │── processed/  # Cleaned and transformed datasets
+│   │── covid-19-R.csv  # Original datasets (CSV files from public sources)
+│   │── covid-19-aggregated.csv  # Original datasets (CSV files from public sources)
+│   │── covid-19.csv  # Original datasets (CSV files from public sources)
 │
 │── README.md  # Project documentation and usage instructions
 ```
