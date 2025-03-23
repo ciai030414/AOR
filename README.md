@@ -24,7 +24,7 @@ This repository contains the deliverables for our project on predicting COVID-19
 
 ## Dataset Sources
 The data used in this project is sourced from publicly available COVID-19 reports and repositories:
-- **Los Angeles County COVID-19 Data**: [GitHub Repository](https://github.com/ANRGUSC/lacounty_covid19_data)
+- **Los Angeles County COVID-19 Data**
 
 
 ## Installation & Setup
