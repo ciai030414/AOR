@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hospital Allocation Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <style>
+      #map {
+        height: 100vh;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map = L.map('map').setView([34.0522, -118.2437], 10);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      var hospitals = [{'name': 'Adventist Health Glendale', 'lat': 34.1446, 'lng': -118.2551, 'icu': 39, 'vent': 41, 'icu_remaining': 14, 'vent_remaining': -6}, {'name': 'Garfield Medical Center', 'lat': 34.0613, 'lng': -118.1223, 'icu': 14, 'vent': 19, 'icu_remaining': -18, 'vent_remaining': -39}, {'name': 'Hollywood Presbyterian Medical Center', 'lat': 34.0997, 'lng': -118.2914, 'icu': 28, 'vent': 46, 'icu_remaining': -28, 'vent_remaining': -43}, {'name': 'Providence Holy Cross Medical Center', 'lat': 34.2776, 'lng': -118.4661, 'icu': 12, 'vent': 32, 'icu_remaining': -4, 'vent_remaining': -20}, {'name': 'LAC + USC Medical Center', 'lat': 34.0597, 'lng': -118.2105, 'icu': 130, 'vent': 220, 'icu_remaining': 7, 'vent_remaining': 3}, {'name': 'Cedars-Sinai Medical Center', 'lat': 34.0754, 'lng': -118.3805, 'icu': 126, 'vent': 176, 'icu_remaining': 44, 'vent_remaining': 39}, {'name': 'Santa Monica - UCLA Medical Center', 'lat': 34.0195, 'lng': -118.4912, 'icu': 22, 'vent': 79, 'icu_remaining': -3, 'vent_remaining': 2}, {'name': 'Whittier Hospital Medical Center', 'lat': 33.9782, 'lng': -118.0328, 'icu': 16, 'vent': 19, 'icu_remaining': -4, 'vent_remaining': -5}, {'name': 'PIH Health Downey Hospital', 'lat': 33.9416, 'lng': -118.1313, 'icu': 8, 'vent': 21, 'icu_remaining': -6, 'vent_remaining': -9}, {'name': 'Antelope Valley Hospital', 'lat': 34.6868, 'lng': -118.1396, 'icu': 21, 'vent': 95, 'icu_remaining': -41, 'vent_remaining': -29}];
+
+      hospitals.forEach(function(hospital) {
+        var hasShortage = hospital.icu_remaining < 0 || hospital.vent_remaining < 0;
+        var iconUrl = hasShortage ? 'https://maps.google.com/mapfiles/ms/icons/red-dot.png' :
+                                    'https://maps.google.com/mapfiles/ms/icons/green-dot.png';
+
+        var icon = L.icon({
+          iconUrl: iconUrl,
+          iconSize: [32, 32],
+          iconAnchor: [16, 32],
+          popupAnchor: [0, -32]
+        });
+
+        var marker = L.marker([hospital.lat, hospital.lng], { icon: icon }).addTo(map);
+        var popupContent = `<strong>${hospital.name}</strong><br>
+                            ICU: ${hospital.icu} (${hospital.icu_remaining >= 0 ? '+' : ''}${hospital.icu_remaining})<br>
+                            Ventilators: ${hospital.vent} (${hospital.vent_remaining >= 0 ? '+' : ''}${hospital.vent_remaining})`;
+        marker.bindPopup(popupContent);
+      });
+    </script>
+  </body>
+</html>
